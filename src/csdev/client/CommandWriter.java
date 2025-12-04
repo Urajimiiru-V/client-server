@@ -1,4 +1,4 @@
-package remoteshell;
+package csdev.client;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -18,7 +18,7 @@ public class CommandWriter {
     
     private void sendConnect() throws IOException {
         if (connected) {
-            out.writeInt(ProtocolConstants.CMD_CONNECT);
+            out.writeInt(Protocol.CMD_CONNECT);
             out.flush();
         }
     }
@@ -28,27 +28,27 @@ public class CommandWriter {
             throw new IOException("Not connected to server");
         }
         
-        if (command.length() > ProtocolConstants.MAX_COMMAND_LENGTH) {
+        if (command.length() > Protocol.MAX_COMMAND_LENGTH) {
             throw new IOException("Command too long");
         }
         
         out.writeInt(ProtocolConstants.CMD_EXECUTE);
-        byte[] commandBytes = command.getBytes(ProtocolConstants.ENCODING);
+        byte[] commandBytes = command.getBytes(Protocol.ENCODING);
         out.writeInt(commandBytes.length);
         out.write(commandBytes);
         out.flush();
     }
     
     public void sendChangeDirectory(String path) throws IOException {
-        sendCommand(ProtocolConstants.SPECIAL_CD + path);
+        sendCommand(Protocol.SPECIAL_CD + path);
     }
     
     public void sendPwdCommand() throws IOException {
-        sendCommand(ProtocolConstants.SPECIAL_PWD);
+        sendCommand(Protocol.SPECIAL_PWD);
     }
     
     public void sendLsCommand(String args) throws IOException {
-        String command = ProtocolConstants.SPECIAL_LS;
+        String command = Protocol.SPECIAL_LS;
         if (args != null && !args.isEmpty()) {
             command += " " + args;
         }
@@ -58,7 +58,7 @@ public class CommandWriter {
     public void sendListUsers() throws IOException {
         if (connected) {
             try {
-                out.writeInt(ProtocolConstants.CMD_LIST_USERS);
+                out.writeInt(Protocol.CMD_LIST_USERS);
                 out.flush();
             } catch (IOException e) {
                 sendCommand("users");
@@ -68,7 +68,7 @@ public class CommandWriter {
     
     public void sendExitCommand() throws IOException {
         if (connected) {
-            out.writeInt(ProtocolConstants.CMD_DISCONNECT);
+            out.writeInt(Protocol.CMD_DISCONNECT);
             out.flush();
             connected = false;
         }
