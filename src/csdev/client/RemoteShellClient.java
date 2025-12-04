@@ -4,6 +4,7 @@ import csdev.*;
 import java.io.*;
 import java.net.*;
 import java.util.Scanner;
+import csdev.*;
 
 public class RemoteShellClient {
     private Socket socket;

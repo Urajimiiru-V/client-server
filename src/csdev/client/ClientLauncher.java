@@ -2,6 +2,7 @@ package csdev.client;
 
 import csdev.Protocol;
 import java.util.Scanner;
+import csdev.*;
 
 public class ClientLauncher {
     public static void main(String[] args) {
