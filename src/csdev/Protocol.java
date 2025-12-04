@@ -16,4 +16,12 @@ public class Protocol {
 
     public static final int SOCKET_TIMEOUT = 1000;
     public static final int COMMAND_TIMEOUT = 30000;
+
+    public static final String ENCODING = "UTF-8";
+    public static final String PROMPT = "remote-shell> ";
+    
+    public static final String SPECIAL_CD = "cd ";
+    public static final String SPECIAL_PWD = "pwd";
+    public static final String SPECIAL_LS = "ls";
+    public static final String SPECIAL_CLEAR = "clear";
 }
