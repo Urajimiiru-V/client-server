@@ -1,4 +1,4 @@
-package remoteshell;
+package csdev.client;
 
 import java.util.Scanner;
 
@@ -14,9 +14,9 @@ public class ClientLauncher {
             host = "localhost";
         }
         
-        System.out.print("Server port [" + ProtocolConstants.SERVER_PORT + "]: ");
+        System.out.print("Server port [" + Protocol.SERVER_PORT + "]: ");
         String portInput = scanner.nextLine().trim();
-        int port = ProtocolConstants.SERVER_PORT;
+        int port = Protocol.SERVER_PORT;
         if (!portInput.isEmpty()) {
             try {
                 port = Integer.parseInt(portInput);
